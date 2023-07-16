@@ -1,0 +1,41 @@
+﻿<Window x:Class="MyApp.Views.UserInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyApp.Views"
+        xmlns:local1="clr-namespace:MyApp.ViewModels"
+        mc:Ignorable="d"
+        Title="AddUserWindowView" Height="450" Width="800">
+
+
+
+    <Window.DataContext>
+        <local1:UserInfoWindowVM/>
+    </Window.DataContext>
+    <Grid>
+
+        <StackPanel Margin="200,0,0,0" Background="#B2EBF2">
+            <TextBlock Text="Registered User List" Style="{StaticResource Titletext}" Margin="0,40,0,0"/>
+            <ListView  Margin="10,50,10,0" Background="AliceBlue" 
+                  x:Name="userListView" ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedUser, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="userListView_SelectionChanged">
+                <ListView.View>
+                    <GridView >
+
+                        <GridViewColumn Header="Username" DisplayMemberBinding="{Binding Username}" Width="100"/>
+                        <GridViewColumn Header="User Type" DisplayMemberBinding="{Binding Type}" Width="200"/>
+                        <GridViewColumn Width="200" Header="Email" DisplayMemberBinding="{Binding Email}"  />
+
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel >
+        <StackPanel Margin="0,0,600,0" Background="#37465B">
+            <Button Content="Add User"  Command="{Binding addUserCommand}" Style="{StaticResource addstudentbutton}" Margin="0,100,0,0" />
+            <Button Content="Edit User"  Command="{Binding editUserCommand}" Style="{StaticResource addstudentbutton}" Margin="0,50,0,0"/>
+            <Button Content="Delete User"  Command="{Binding deleteUserCommand}" Style="{StaticResource addstudentbutton}" Margin="0,50,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

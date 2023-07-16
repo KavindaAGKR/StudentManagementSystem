@@ -1,0 +1,71 @@
+﻿<Window x:Class="MyApp.Views.AdminMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyApp.Views"
+        xmlns:local1="clr-namespace:MyApp.ViewModels"
+        mc:Ignorable="d"
+        Title="AdminMainWindow" Height="500" Width="800">
+    <Window.DataContext>
+        <local1:AdminMainWindowVM/>
+    </Window.DataContext>
+
+    <Border CornerRadius="20" >
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+
+            </Grid.ColumnDefinitions>
+
+
+
+
+
+            <StackPanel   Background="#37465B"  Width="200" >
+                <StackPanel Margin="0,70,0,0">
+                    <Button Content="Add Student" Command="{Binding AddStudentCommand}" Style="{StaticResource addstudentbutton}" >
+
+                    </Button>
+                    <Button Content="Edit Student" Command="{Binding EditStudentCommand}" Style="{StaticResource addstudentbutton}"/>
+                    <Button Content="Delete Student" Command="{Binding DeleteCommand}" Style="{StaticResource  addstudentbutton}"/>
+                    <Button Content="User Info" Command="{Binding UserInfoCommand}" Style="{StaticResource addstudentbutton}"/>
+                    <Button Content="Module Info" Command="{Binding ModuleInfoCommand}" Style="{StaticResource addstudentbutton}"/>
+                </StackPanel>
+            </StackPanel>
+
+
+            <StackPanel Background="#B2EBF2"  HorizontalAlignment="Center" Grid.Column="1" Width="600">
+
+                <TextBlock  Text="Registered Students"   Style="{StaticResource Titletext}" Margin="0,30,0,30" />
+
+                <ListView Width="550" Background="#FFFDE7"
+                  ItemsSource="{Binding Students, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedStudent, UpdateSourceTrigger=PropertyChanged}" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Reg No" Width="80"
+                                    DisplayMemberBinding="{Binding RegNo}"  />
+                            <GridViewColumn Header="First Name" Width="100"
+                                    DisplayMemberBinding="{Binding FirstName}"/>
+                            <GridViewColumn Header="Last Name" Width="110"
+                                    DisplayMemberBinding="{Binding LastName}"/>
+                            <GridViewColumn Header="Email" Width="170"
+                                    DisplayMemberBinding="{Binding Email}"/>
+                            <GridViewColumn Header="Telephone No" Width="80"
+                                    DisplayMemberBinding="{Binding TelNo}"/>
+
+                        </GridView>
+                    </ListView.View>
+
+                </ListView>
+            </StackPanel>
+
+
+
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,45 @@
+﻿<Window x:Class="MyApp.Views.ModuleInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyApp.Views"
+        xmlns:local1="clr-namespace:MyApp.ViewModels"
+        mc:Ignorable="d"
+        Title="ModuleInfoWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local1:ModuleInfoWindowVM/>
+    </Window.DataContext>
+    <Grid>
+
+        <StackPanel Margin="200,0,0,0" Background="#B2EBF2">
+            <TextBlock Text="Module Informations" Style="{StaticResource Titletext}" Margin="0,20,0,20"/>
+            <ListView x:Name="userListView" ItemsSource="{Binding Modules, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedModule, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0" Background="#FFFDE7">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Module Code" 
+                                    DisplayMemberBinding="{Binding ModuleId}" Width="100"/>
+                        <GridViewColumn Header="Module Name" 
+                                    DisplayMemberBinding="{Binding Name}" Width="300"/>
+                        <GridViewColumn Header="Credits" 
+                                    DisplayMemberBinding="{Binding Credit}" Width="100"/>
+
+
+
+                    </GridView>
+
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel Margin="0,0,600,0" Background="#37465B">
+            <Button Content="Add Module"  
+                Command="{Binding addModuleCommand}" Style="{StaticResource addstudentbutton}" Margin="0,100,0,0"/>
+            <Button Content="Edit Module" 
+                Command="{Binding editModuleCommand}" Style="{StaticResource addstudentbutton}" Margin="0,50,0,0"/>
+            <Button Content="Delete Module" 
+                Command="{Binding deleteModuleCommand}" Style="{StaticResource addstudentbutton}" Margin="0,50,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
